@@ -1,4 +1,3 @@
-```javascript
 const phones = [
   {
     name: "Apple iPhone 6",
@@ -190,6 +189,7 @@ function escapeHTML(text) {
 
 
 function phonePlaceholder(name, brand) {
+
   const shortName = name
     .replace("Apple ", "")
     .replace("Samsung ", "")
@@ -208,15 +208,12 @@ function phonePlaceholder(name, brand) {
 }
 
 
-/* ================= KARTICA TELEFONA ================= */
+/* ================= KARTICA KOLEKCIJE ================= */
 
-function card(p) {
+function card(p, index) {
 
   return `
-    <article class="card"
-      data-search="${escapeHTML(
-        (p.name + " " + p.brand + " " + p.year).toLowerCase()
-      )}">
+    <article class="card">
 
       ${phonePlaceholder(p.name, p.brand)}
 
@@ -225,7 +222,7 @@ function card(p) {
         <h3>${escapeHTML(p.name)}</h3>
 
         <div class="year">
-          ${p.year}
+          ${escapeHTML(p.year)}
         </div>
 
         <div class="specs">
@@ -238,7 +235,7 @@ function card(p) {
         <button
           class="details"
           type="button"
-          onclick="openPhone(${JSON.stringify(p).replace(/"/g, "&quot;")})"
+          data-phone-index="${index}"
         >
           Pogledaj detalje →
         </button>
@@ -284,7 +281,8 @@ function saleCard(p) {
 
       <button
         type="button"
-        onclick="contactSeller('${escapeHTML(p.name)}')"
+        class="contact-button"
+        data-sale-name="${escapeHTML(p.name)}"
       >
         ⌕ Kontaktiraj
       </button>
@@ -301,7 +299,10 @@ function render(list = phones) {
   const grid = document.getElementById("collectionGrid");
   const count = document.getElementById("collectionCount");
 
-  if (!grid) return;
+  if (!grid) {
+    console.error("Nije pronađen collectionGrid.");
+    return;
+  }
 
   if (list.length === 0) {
 
@@ -323,37 +324,101 @@ function render(list = phones) {
 
   } else {
 
-    grid.innerHTML = list.map(card).join("");
+    grid.innerHTML = list
+      .map((phone) => {
+        const originalIndex = phones.indexOf(phone);
+        return card(phone, originalIndex);
+      })
+      .join("");
 
   }
 
   if (count) {
+
     count.textContent =
       `${list.length} ${list.length === 1 ? "telefon" : "telefona"} u prikazu`;
+
   }
+
+  attachCollectionButtons();
 }
 
 
-/* ================= PRODAJA ================= */
+/* ================= DUGMAD DETALJA ================= */
+
+function attachCollectionButtons() {
+
+  document
+    .querySelectorAll("[data-phone-index]")
+    .forEach(button => {
+
+      button.addEventListener("click", function() {
+
+        const index = Number(
+          button.getAttribute("data-phone-index")
+        );
+
+        if (!Number.isNaN(index) && phones[index]) {
+          openPhone(phones[index]);
+        }
+
+      });
+
+    });
+}
+
+
+/* ================= PRIKAZ PRODAJE ================= */
 
 function renderSales() {
 
   const grid = document.getElementById("saleGrid");
 
-  if (!grid) return;
+  if (!grid) {
+    console.error("Nije pronađen saleGrid.");
+    return;
+  }
 
-  grid.innerHTML = sales.map(saleCard).join("");
+  grid.innerHTML = sales
+    .map(saleCard)
+    .join("");
+
+  attachSaleButtons();
 }
 
 
-/* ================= DETALJI ================= */
+/* ================= DUGMAD PRODAJE ================= */
+
+function attachSaleButtons() {
+
+  document
+    .querySelectorAll("[data-sale-name]")
+    .forEach(button => {
+
+      button.addEventListener("click", function() {
+
+        const name =
+          button.getAttribute("data-sale-name");
+
+        contactSeller(name);
+
+      });
+
+    });
+}
+
+
+/* ================= DETALJI TELEFONA ================= */
 
 function openPhone(p) {
 
   const modal = document.getElementById("modal");
   const content = document.getElementById("modalContent");
 
-  if (!modal || !content) return;
+  if (!modal || !content) {
+    console.error("Modal nije pronađen.");
+    return;
+  }
 
   content.innerHTML = `
 
@@ -453,13 +518,20 @@ function contactSeller(name) {
 
 function runSearch() {
 
-  const heroInput = document.getElementById("heroSearch");
-  const headerInput = document.getElementById("headerSearch");
+  const heroInput =
+    document.getElementById("heroSearch");
 
-  const heroValue = heroInput ? heroInput.value.trim() : "";
-  const headerValue = headerInput ? headerInput.value.trim() : "";
+  const headerInput =
+    document.getElementById("headerSearch");
 
-  const q = (heroValue || headerValue).toLowerCase();
+  const heroValue =
+    heroInput ? heroInput.value.trim() : "";
+
+  const headerValue =
+    headerInput ? headerInput.value.trim() : "";
+
+  const q =
+    (heroValue || headerValue).toLowerCase();
 
   const results = q
     ? phones.filter(p =>
@@ -471,13 +543,16 @@ function runSearch() {
 
   render(results);
 
-  const collection = document.getElementById("kolekcija");
+  const collection =
+    document.getElementById("kolekcija");
 
   if (collection) {
+
     collection.scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
+
   }
 }
 
@@ -486,155 +561,236 @@ function runSearch() {
 
 function showAll() {
 
-  const heroInput = document.getElementById("heroSearch");
-  const headerInput = document.getElementById("headerSearch");
+  const heroInput =
+    document.getElementById("heroSearch");
 
-  if (heroInput) heroInput.value = "";
-  if (headerInput) headerInput.value = "";
+  const headerInput =
+    document.getElementById("headerSearch");
+
+  if (heroInput) {
+    heroInput.value = "";
+  }
+
+  if (headerInput) {
+    headerInput.value = "";
+  }
 
   render(phones);
 
-  const collection = document.getElementById("kolekcija");
+  const collection =
+    document.getElementById("kolekcija");
 
   if (collection) {
+
     collection.scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
+
   }
 }
 
 
 /* ================= PRETRAGA ENTER ================= */
 
-const heroSearch = document.getElementById("heroSearch");
+function setupSearch() {
 
-if (heroSearch) {
+  const heroSearch =
+    document.getElementById("heroSearch");
 
-  heroSearch.addEventListener("keydown", function(e) {
+  if (heroSearch) {
 
-    if (e.key === "Enter") {
-      runSearch();
-    }
+    heroSearch.addEventListener(
+      "keydown",
+      function(e) {
 
-  });
+        if (e.key === "Enter") {
+          runSearch();
+        }
 
-}
-
-
-const headerSearch = document.getElementById("headerSearch");
-
-if (headerSearch) {
-
-  headerSearch.addEventListener("keydown", function(e) {
-
-    if (e.key === "Enter") {
-
-      const heroInput = document.getElementById("heroSearch");
-
-      if (heroInput) {
-        heroInput.value = headerSearch.value;
       }
+    );
 
-      runSearch();
+  }
 
-    }
 
-  });
+  const headerSearch =
+    document.getElementById("headerSearch");
+
+  if (headerSearch) {
+
+    headerSearch.addEventListener(
+      "keydown",
+      function(e) {
+
+        if (e.key === "Enter") {
+
+          const heroInput =
+            document.getElementById("heroSearch");
+
+          if (heroInput) {
+            heroInput.value =
+              headerSearch.value;
+          }
+
+          runSearch();
+
+        }
+
+      }
+    );
+
+  }
 
 }
 
 
 /* ================= PROIZVOĐAČI ================= */
 
-document.querySelectorAll(".brands button").forEach(button => {
+function setupBrands() {
 
-  button.addEventListener("click", function() {
+  document
+    .querySelectorAll(".brands button")
+    .forEach(button => {
 
-    const brand = button.dataset.brand;
+      button.addEventListener(
+        "click",
+        function() {
 
-    let results;
+          const brand =
+            button.dataset.brand;
 
-    if (brand === "Ostali") {
+          let results;
 
-      results = phones.filter(p =>
-        !["Apple", "Samsung", "Xiaomi", "Nokia", "Huawei"]
-          .includes(p.brand)
+          if (brand === "Ostali") {
+
+            results = phones.filter(p =>
+              ![
+                "Apple",
+                "Samsung",
+                "Xiaomi",
+                "Nokia",
+                "Huawei"
+              ].includes(p.brand)
+            );
+
+          } else {
+
+            results = phones.filter(p =>
+              p.brand === brand
+            );
+
+          }
+
+          render(results);
+
+          const collection =
+            document.getElementById("kolekcija");
+
+          if (collection) {
+
+            collection.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+          }
+
+        }
       );
 
-    } else {
+    });
 
-      results = phones.filter(p =>
-        p.brand === brand
-      );
-
-    }
-
-    render(results);
-
-    const collection = document.getElementById("kolekcija");
-
-    if (collection) {
-
-      collection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    }
-
-  });
-
-});
+}
 
 
 /* ================= TIMELINE ================= */
 
-document.querySelectorAll(".timeline button").forEach(button => {
+function setupTimeline() {
 
-  button.addEventListener("click", function() {
+  document
+    .querySelectorAll(".timeline button")
+    .forEach(button => {
 
-    const year = Number(button.dataset.year);
+      button.addEventListener(
+        "click",
+        function() {
 
-    const matches = phones.filter(p =>
-      Math.abs(p.year - year) <= 2
-    );
+          const year =
+            Number(button.dataset.year);
 
-    const yearText = document.getElementById("yearText");
+          const matches =
+            phones.filter(p =>
+              Math.abs(p.year - year) <= 2
+            );
 
-    if (!yearText) return;
+          const yearText =
+            document.getElementById("yearText");
 
-    if (matches.length) {
+          if (!yearText) return;
 
-      yearText.innerHTML =
-        `<strong>${year}</strong> — ` +
-        matches.map(p => escapeHTML(p.name)).join(" • ");
+          if (matches.length) {
 
-    } else {
+            yearText.innerHTML =
+              `<strong>${year}</strong> — ` +
+              matches
+                .map(p => escapeHTML(p.name))
+                .join(" • ");
 
-      yearText.textContent =
-        `${year}: za ovaj period još nema unesenih modela.`;
+          } else {
 
-    }
+            yearText.textContent =
+              `${year}: za ovaj period još nema unesenih modela.`;
 
-  });
+          }
 
-});
+        }
+      );
+
+    });
+
+}
 
 
 /* ================= ESC ZA MODAL ================= */
 
-document.addEventListener("keydown", function(e) {
+function setupEscape() {
 
-  if (e.key === "Escape") {
-    closeModal();
+  document.addEventListener(
+    "keydown",
+    function(e) {
+
+      if (e.key === "Escape") {
+        closeModal();
+      }
+
+    }
+  );
+
+}
+
+
+/* ================= POKRETANJE SAJTA ================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+    render();
+    renderSales();
+
+    setupSearch();
+    setupBrands();
+    setupTimeline();
+    setupEscape();
+
+    console.log(
+      "Mobile Collection učitan:",
+      phones.length,
+      "telefona u kolekciji i",
+      sales.length,
+      "telefona na prodaju."
+    );
+
   }
-
-});
-
-
-/* ================= POKRETANJE ================= */
-
-render();
-renderSales();
-```
+);
