@@ -8,7 +8,7 @@ const phones = [
   storage: "16 / 64 / 128 GB",
   cpu: "Apple A8",
   desc: "Model koji je obilježio jednu od važnih generacija iPhone uređaja.",
-  image: "https://cellphonecollection.github.io/iphone-6.jpg.jpg"
+  image: "images/iphone-6.jpg.jpg"
 },
   {
     name: "Samsung Galaxy S7",
