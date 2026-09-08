@@ -1,14 +1,15 @@
 const phones = [
   {
-    name: "Apple iPhone 6",
-    brand: "Apple",
-    year: 2014,
-    screen: "4.7″",
-    ram: "1 GB RAM",
-    storage: "16 / 64 / 128 GB",
-    cpu: "Apple A8",
-    desc: "Model koji je obilježio jednu od važnih generacija iPhone uređaja."
-  },
+  name: "Apple iPhone 6",
+  brand: "Apple",
+  year: 2014,
+  screen: "4.7″",
+  ram: "1 GB RAM",
+  storage: "16 / 64 / 128 GB",
+  cpu: "Apple A8",
+  desc: "Model koji je obilježio jednu od važnih generacija iPhone uređaja.",
+  image: "iphone-6.jpg.jpg"
+},
   {
     name: "Samsung Galaxy S7",
     brand: "Samsung",
