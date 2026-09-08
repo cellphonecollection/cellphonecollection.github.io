@@ -189,7 +189,7 @@ function escapeHTML(text) {
 }
 
 
-function phonePlaceholder(name, brand) {
+function phonePlaceholder(name, brand, image = "") {
 
   const shortName = name
     .replace("Apple ", "")
@@ -197,6 +197,17 @@ function phonePlaceholder(name, brand) {
     .replace("Xiaomi ", "")
     .replace("Huawei ", "")
     .replace("Nokia ", "");
+
+  if (image) {
+    return `
+      <div class="device-photo">
+        <img
+          src="${escapeHTML(image)}"
+          alt="${escapeHTML(name)}"
+        >
+      </div>
+    `;
+  }
 
   return `
     <div class="device-photo">
