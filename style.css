@@ -1002,12 +1002,20 @@ footer {
 
 /* ================= LOGOI PROIZVOĐAČA ================= */
 
+.brands .brand-logo {
+  width: 100px !important;
+  height: 90px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
 .brands .brand-logo img {
-  width: 70px !important;
-  height: 70px !important;
-  max-width: 70px !important;
-  max-height: 70px !important;
+  width: 60px !important;
+  height: 60px !important;
+  max-width: 60px !important;
+  max-height: 60px !important;
   object-fit: contain !important;
   display: block !important;
-  margin: 0 auto !important;
 }
