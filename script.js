@@ -227,7 +227,7 @@ function card(p, index) {
   return `
     <article class="card">
 
-      ${phonePlaceholder(p.name, p.brand)}
+      ${phonePlaceholder(p.name, p.brand, p.image)}
 
       <div class="card-body">
 
