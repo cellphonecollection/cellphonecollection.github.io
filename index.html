@@ -1,1 +1,862 @@
-<!DOCTYPE html> <html lang="sr"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Mobile Collection | Kolekcija mobilnih telefona</title> <meta name="description" content="Mobile Collection – kolekcija mobilnih telefona kroz generacije, specifikacije i telefoni na prodaju." > <link rel="stylesheet" href="style.css"> </head> <body> <header class="topbar"> <a class="brand" href="#pocetna" aria-label="Mobile Collection početna stranica"> <span class="brand-icon">▯</span> <span class="brand-text"> <b>MOBILE</b> <small>COLLECTION</small> </span> </a> <nav class="main-nav"> <a href="#pocetna">Početna</a> <a href="#kolekcija">Kolekcija</a> <a href="#proizvodjaci">Proizvođači</a> <a href="#prodaja">Na prodaju</a> <a href="#vrijeme">Kroz vrijeme</a> <a href="#o-nama">O kolekciji</a> </nav> <div class="header-search"> <span>⌕</span> <input id="headerSearch" type="search" placeholder="Pretraži model..." autocomplete="off" > </div> </header> <main> <!-- ================= HERO ================= --> <section id="pocetna" class="hero"> <div class="hero-content"> <p class="eyebrow">DOBRO DOŠLI NA</p> <h1> MOBILE <span>COLLECTION</span> </h1> <p class="hero-text"> Digitalna kolekcija mobilnih telefona kroz generacije. Otkrijte poznate modele, njihove specifikacije, godine proizvodnje i telefone koji su trenutno na prodaju. </p> <div class="search-box"> <span>⌕</span> <input id="heroSearch" type="search" placeholder="Pretraži npr. iPhone 6, Galaxy S7..." autocomplete="off" > <button type="button" onclick="runSearch()"> Pretraži </button> </div> </div> <div class="hero-phones" aria-hidden="true"> <div class="phone phone-a"> <span></span> </div> <div class="phone phone-b"> <span>Samsung</span> </div> <div class="phone phone-c"> <span>MI</span> </div> <div class="phone phone-d"> <span>NOKIA</span> </div> </div> </section> <!-- ================= PROIZVOĐAČI ================= --> <section id="proizvodjaci" class="brands-section"> <div class="section-head center-head"> <div> <p class="eyebrow blue-eyebrow">PROIZVOĐAČI</p> <h2>Pretraži po proizvođaču</h2> <p> Izaberi proizvođača i pogledaj telefone iz kolekcije. </p> </div> </div> <div class="brands"> <button type="button" data-brand="Apple"> <strong></strong> <small>Apple</small> </button> <button type="button" data-brand="Samsung"> <strong>Samsung</strong> <small>Samsung</small> </button> <button type="button" data-brand="Xiaomi"> <strong>mi</strong> <small>Xiaomi</small> </button> <button type="button" data-brand="Nokia"> <strong>NOKIA</strong> <small>Nokia</small> </button> <button type="button" data-brand="Huawei"> <strong>HUAWEI</strong> <small>Huawei</small> </button> <button type="button" data-brand="Ostali"> <strong>•••</strong> <small>Ostali proizvođači</small> </button> </div> </section> <!-- ================= KOLEKCIJA ================= --> <section id="kolekcija" class="section collection-section"> <div class="section-head"> <div> <p class="eyebrow blue-eyebrow"> MOJA KOLEKCIJA </p> <h2>Mobilni telefoni</h2> <p> Pogledajte modele koji se nalaze u kolekciji. </p> </div> <button class="outline" type="button" onclick="showAll()" > Prikaži sve telefone → </button> </div> <div class="collection-tools"> <div class="collection-count" id="collectionCount"> Telefoni u kolekciji </div> <button class="clear-search" id="clearSearch" type="button" onclick="showAll()" > ✕ Obriši filter </button> </div> <div id="collectionGrid" class="phone-grid"></div> </section> <!-- ================= PRODAJA ================= --> <section id="prodaja" class="sale-section"> <div class="section-head"> <div> <p class="eyebrow blue-eyebrow"> OGLASI </p> <h2>🏷️ Telefoni na prodaju</h2> <p> Telefoni koji su trenutno dostupni za kupovinu. </p> </div> </div> <div class="sale-info"> <div> <strong>Želiš neki telefon?</strong> <span> Klikni na kontakt i pošalji upit. </span> </div> <span class="sale-status"> ● Dostupno </span> </div> <div id="saleGrid" class="sale-grid"></div> </section> <!-- ================= VRIJEME ================= --> <section id="vrijeme" class="timeline-section"> <div class="section-head timeline-head"> <div> <p class="eyebrow"> ISTORIJA MOBILNIH TELEFONA </p> <h2>📅 Telefoni kroz vrijeme</h2> <p> Pogledajte kako se mobilna tehnologija mijenjala kroz godine. </p> </div> </div> <div class="timeline"> <button type="button" data-year="2000"> 2000 </button> <button type="button" data-year="2005"> 2005 </button> <button type="button" data-year="2010"> 2010 </button> <button type="button" data-year="2015"> 2015 </button> <button type="button" data-year="2020"> 2020 </button> <button type="button" data-year="2026"> 2026 </button> </div> <div class="year-result"> <span class="year-icon">◉</span> <p id="yearText"> Izaberite godinu da pogledate modele iz tog perioda. </p> </div> </section> <!-- ================= O KOLEKCIJI ================= --> <section id="o-nama" class="about"> <div class="about-title"> <p class="eyebrow blue-eyebrow"> O KOLEKCIJI </p> <h2> Više od telefona. </h2> </div> <div class="about-text"> <p> Mobile Collection je zamišljen kao digitalni katalog mobilnih telefona kroz različite generacije. </p> <p> Cilj kolekcije je sačuvati informacije o uređajima koji su obilježili razvoj mobilne tehnologije — od klasičnih Nokia telefona do modernih pametnih telefona. </p> <div class="about-features"> <div> <strong>📱</strong> <span>Modeli</span> <small>Različite generacije telefona</small> </div> <div> <strong>⚙</strong> <span>Specifikacije</span> <small>Osnovne informacije o uređajima</small> </div> <div> <strong>🏷️</strong> <span>Prodaja</span> <small>Telefoni koji su dostupni</small> </div> </div> </div> </section> </main> <!-- ================= FOOTER ================= --> <footer id="kontakt"> <div class="footer-brand"> <b>MOBILE COLLECTION</b> <span> Stara era. Moderna tehnologija. </span> </div> <div class="footer-links"> <a href="#pocetna">Početna</a> <a href="#kolekcija">Kolekcija</a> <a href="#proizvodjaci">Proizvođači</a> <a href="#prodaja">Na prodaju</a> <a href="#vrijeme">Kroz vrijeme</a> <a href="#o-nama">O kolekciji</a> </div> <div class="footer-contact"> <strong>Kontakt</strong> <span>📧 tvoj@email.com</span> <span>📞 +382 XX XXX XXX</span> </div> <div class="footer-bottom"> © 2026 Mobile Collection. Sva prava zadržana. </div> </footer> <!-- ================= MODAL ================= --> <div id="modal" class="modal" onclick="closeModal(event)" > <div class="modal-card"> <button class="close" type="button" onclick="closeModal()" aria-label="Zatvori" > × </button> <div id="modalContent"></div> </div> </div> <script src="script.js"></script> </body> </html>
+<!DOCTYPE html>
+<html lang="sr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mobile Collection | Kolekcija mobilnih telefona</title>
+
+  <meta
+    name="description"
+    content="Mobile Collection – kolekcija mobilnih telefona kroz generacije, specifikacije i telefoni na prodaju."
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+
+  <header class="topbar">
+
+    <a
+      class="brand"
+      href="#pocetna"
+      aria-label="Mobile Collection početna stranica"
+    >
+      <span class="brand-icon">▯</span>
+
+      <span class="brand-text">
+        <b>MOBILE</b>
+        <small>COLLECTION</small>
+      </span>
+    </a>
+
+
+    <nav class="main-nav">
+
+      <a href="#pocetna">Početna</a>
+      <a href="#kolekcija">Kolekcija</a>
+      <a href="#proizvodjaci">Proizvođači</a>
+      <a href="#prodaja">Na prodaju</a>
+      <a href="#vrijeme">Kroz vrijeme</a>
+      <a href="#o-nama">O kolekciji</a>
+
+    </nav>
+
+
+    <div class="header-search">
+
+      <span>⌕</span>
+
+      <input
+        id="headerSearch"
+        type="search"
+        placeholder="Pretraži model..."
+        autocomplete="off"
+      >
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section id="pocetna" class="hero">
+
+      <div class="hero-content">
+
+        <p class="eyebrow">
+          DOBRO DOŠLI NA
+        </p>
+
+        <h1>
+          MOBILE
+          <span>COLLECTION</span>
+        </h1>
+
+        <p class="hero-text">
+          Digitalna kolekcija mobilnih telefona kroz generacije.
+          Otkrijte poznate modele, njihove specifikacije,
+          godine proizvodnje i telefone koji su trenutno na prodaju.
+        </p>
+
+
+        <div class="search-box">
+
+          <span>⌕</span>
+
+          <input
+            id="heroSearch"
+            type="search"
+            placeholder="Pretraži npr. iPhone 6, Galaxy S7..."
+            autocomplete="off"
+          >
+
+          <button
+            type="button"
+            onclick="runSearch()"
+          >
+            Pretraži
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="hero-phones"
+        aria-hidden="true"
+      >
+
+        <div class="phone phone-a">
+          <span></span>
+        </div>
+
+        <div class="phone phone-b">
+          <span>Samsung</span>
+        </div>
+
+        <div class="phone phone-c">
+          <span>MI</span>
+        </div>
+
+        <div class="phone phone-d">
+          <span>NOKIA</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= PROIZVOĐAČI ================= -->
+
+    <section
+      id="proizvodjaci"
+      class="brands-section"
+    >
+
+      <div class="section-head center-head">
+
+        <div>
+
+          <p class="eyebrow blue-eyebrow">
+            PROIZVOĐAČI
+          </p>
+
+          <h2>
+            Pretraži po proizvođaču
+          </h2>
+
+          <p>
+            Izaberi proizvođača i pogledaj telefone iz kolekcije.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="brands">
+
+
+        <!-- APPLE -->
+
+        <button
+          type="button"
+          data-brand="Apple"
+        >
+
+          <div class="brand-logo">
+            <span></span>
+          </div>
+
+          <small>Apple</small>
+
+        </button>
+
+
+
+        <!-- SAMSUNG -->
+
+        <button
+          type="button"
+          data-brand="Samsung"
+        >
+
+          <div class="brand-logo">
+            <span>Samsung</span>
+          </div>
+
+          <small>Samsung</small>
+
+        </button>
+
+
+
+        <!-- XIAOMI -->
+
+        <button
+          type="button"
+          data-brand="Xiaomi"
+        >
+
+          <div class="brand-logo">
+            <span>mi</span>
+          </div>
+
+          <small>Xiaomi</small>
+
+        </button>
+
+
+
+        <!-- NOKIA -->
+
+        <button
+          type="button"
+          data-brand="Nokia"
+        >
+
+          <div class="brand-logo">
+            <span>NOKIA</span>
+          </div>
+
+          <small>Nokia</small>
+
+        </button>
+
+
+
+        <!-- HUAWEI -->
+
+        <button
+          type="button"
+          data-brand="Huawei"
+        >
+
+          <div class="brand-logo">
+            <span>HUAWEI</span>
+          </div>
+
+          <small>Huawei</small>
+
+        </button>
+
+
+
+        <!-- BLACKBERRY -->
+
+        <button
+          type="button"
+          data-brand="BlackBerry"
+        >
+
+          <div class="brand-logo">
+            <span>BB</span>
+          </div>
+
+          <small>BlackBerry</small>
+
+        </button>
+
+
+
+        <!-- SONY -->
+
+        <button
+          type="button"
+          data-brand="Sony"
+        >
+
+          <div class="brand-logo">
+            <span>SONY</span>
+          </div>
+
+          <small>Sony</small>
+
+        </button>
+
+
+
+        <!-- ERICSSON -->
+
+        <button
+          type="button"
+          data-brand="Ericsson"
+        >
+
+          <div class="brand-logo">
+            <span>ERICSSON</span>
+          </div>
+
+          <small>Ericsson</small>
+
+        </button>
+
+
+
+        <!-- SONY ERICSSON -->
+
+        <button
+          type="button"
+          data-brand="Sony Ericsson"
+        >
+
+          <div class="brand-logo">
+            <span>SE</span>
+          </div>
+
+          <small>Sony Ericsson</small>
+
+        </button>
+
+
+
+        <!-- MOTOROLA -->
+
+        <button
+          type="button"
+          data-brand="Motorola"
+        >
+
+          <div class="brand-logo">
+            <span>M</span>
+          </div>
+
+          <small>Motorola</small>
+
+        </button>
+
+
+
+        <!-- SIEMENS -->
+
+        <button
+          type="button"
+          data-brand="Siemens"
+        >
+
+          <div class="brand-logo">
+            <span>SIEMENS</span>
+          </div>
+
+          <small>Siemens</small>
+
+        </button>
+
+
+
+        <!-- HONOR -->
+
+        <button
+          type="button"
+          data-brand="Honor"
+        >
+
+          <div class="brand-logo">
+            <span>HONOR</span>
+          </div>
+
+          <small>Honor</small>
+
+        </button>
+
+
+
+        <!-- UNIHERTZ -->
+
+        <button
+          type="button"
+          data-brand="Unihertz"
+        >
+
+          <div class="brand-logo">
+            <span>U</span>
+          </div>
+
+          <small>Unihertz</small>
+
+        </button>
+
+
+
+        <!-- POLAROID -->
+
+        <button
+          type="button"
+          data-brand="Polaroid"
+        >
+
+          <div class="brand-logo">
+            <span>POLAROID</span>
+          </div>
+
+          <small>Polaroid</small>
+
+        </button>
+
+
+
+        <!-- SHARP -->
+
+        <button
+          type="button"
+          data-brand="Sharp"
+        >
+
+          <div class="brand-logo">
+            <span>SHARP</span>
+          </div>
+
+          <small>Sharp</small>
+
+        </button>
+
+
+
+        <!-- OSTALI -->
+
+        <button
+          type="button"
+          data-brand="Ostali"
+        >
+
+          <div class="brand-logo">
+            <span>•••</span>
+          </div>
+
+          <small>Ostali proizvođači</small>
+
+        </button>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= KOLEKCIJA ================= -->
+
+    <section
+      id="kolekcija"
+      class="section collection-section"
+    >
+
+      <div class="section-head">
+
+        <div>
+
+          <p class="eyebrow blue-eyebrow">
+            MOJA KOLEKCIJA
+          </p>
+
+          <h2>
+            Mobilni telefoni
+          </h2>
+
+          <p>
+            Pogledajte modele koji se nalaze u kolekciji.
+          </p>
+
+        </div>
+
+
+        <button
+          class="outline"
+          type="button"
+          onclick="showAll()"
+        >
+          Prikaži sve telefone →
+        </button>
+
+      </div>
+
+
+      <div class="collection-tools">
+
+        <div
+          class="collection-count"
+          id="collectionCount"
+        >
+          Telefoni u kolekciji
+        </div>
+
+
+        <button
+          class="clear-search"
+          id="clearSearch"
+          type="button"
+          onclick="showAll()"
+        >
+          ✕ Obriši filter
+        </button>
+
+      </div>
+
+
+      <div
+        id="collectionGrid"
+        class="phone-grid"
+      ></div>
+
+    </section>
+
+
+
+    <!-- ================= PRODAJA ================= -->
+
+    <section
+      id="prodaja"
+      class="sale-section"
+    >
+
+      <div class="section-head">
+
+        <div>
+
+          <p class="eyebrow blue-eyebrow">
+            OGLASI
+          </p>
+
+          <h2>
+            🏷️ Telefoni na prodaju
+          </h2>
+
+          <p>
+            Telefoni koji su trenutno dostupni za kupovinu.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="sale-info">
+
+        <div>
+
+          <strong>
+            Želiš neki telefon?
+          </strong>
+
+          <span>
+            Klikni na kontakt i pošalji upit.
+          </span>
+
+        </div>
+
+
+        <span class="sale-status">
+          ● Dostupno
+        </span>
+
+      </div>
+
+
+      <div
+        id="saleGrid"
+        class="sale-grid"
+      ></div>
+
+    </section>
+
+
+
+    <!-- ================= VRIJEME ================= -->
+
+    <section
+      id="vrijeme"
+      class="timeline-section"
+    >
+
+      <div class="section-head timeline-head">
+
+        <div>
+
+          <p class="eyebrow">
+            ISTORIJA MOBILNIH TELEFONA
+          </p>
+
+          <h2>
+            📅 Telefoni kroz vrijeme
+          </h2>
+
+          <p>
+            Pogledajte kako se mobilna tehnologija mijenjala kroz godine.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="timeline">
+
+        <button
+          type="button"
+          data-year="2000"
+        >
+          2000
+        </button>
+
+        <button
+          type="button"
+          data-year="2005"
+        >
+          2005
+        </button>
+
+        <button
+          type="button"
+          data-year="2010"
+        >
+          2010
+        </button>
+
+        <button
+          type="button"
+          data-year="2015"
+        >
+          2015
+        </button>
+
+        <button
+          type="button"
+          data-year="2020"
+        >
+          2020
+        </button>
+
+        <button
+          type="button"
+          data-year="2026"
+        >
+          2026
+        </button>
+
+      </div>
+
+
+      <div class="year-result">
+
+        <span class="year-icon">
+          ◉
+        </span>
+
+        <p id="yearText">
+          Izaberite godinu da pogledate modele iz tog perioda.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= O KOLEKCIJI ================= -->
+
+    <section
+      id="o-nama"
+      class="about"
+    >
+
+      <div class="about-title">
+
+        <p class="eyebrow blue-eyebrow">
+          O KOLEKCIJI
+        </p>
+
+        <h2>
+          Više od telefona.
+        </h2>
+
+      </div>
+
+
+      <div class="about-text">
+
+        <p>
+          Mobile Collection je zamišljen kao digitalni katalog
+          mobilnih telefona kroz različite generacije.
+        </p>
+
+        <p>
+          Cilj kolekcije je sačuvati informacije o uređajima
+          koji su obilježili razvoj mobilne tehnologije —
+          od klasičnih Nokia telefona do modernih pametnih telefona.
+        </p>
+
+
+        <div class="about-features">
+
+          <div>
+
+            <strong>📱</strong>
+
+            <span>
+              Modeli
+            </span>
+
+            <small>
+              Različite generacije telefona
+            </small>
+
+          </div>
+
+
+          <div>
+
+            <strong>⚙</strong>
+
+            <span>
+              Specifikacije
+            </span>
+
+            <small>
+              Osnovne informacije o uređajima
+            </small>
+
+          </div>
+
+
+          <div>
+
+            <strong>🏷️</strong>
+
+            <span>
+              Prodaja
+            </span>
+
+            <small>
+              Telefoni koji su dostupni
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer id="kontakt">
+
+    <div class="footer-brand">
+
+      <b>
+        MOBILE COLLECTION
+      </b>
+
+      <span>
+        Stara era. Moderna tehnologija.
+      </span>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="#pocetna">
+        Početna
+      </a>
+
+      <a href="#kolekcija">
+        Kolekcija
+      </a>
+
+      <a href="#proizvodjaci">
+        Proizvođači
+      </a>
+
+      <a href="#prodaja">
+        Na prodaju
+      </a>
+
+      <a href="#vrijeme">
+        Kroz vrijeme
+      </a>
+
+      <a href="#o-nama">
+        O kolekciji
+      </a>
+
+    </div>
+
+
+    <div class="footer-contact">
+
+      <strong>
+        Kontakt
+      </strong>
+
+      <span>
+        📧 tvoj@email.com
+      </span>
+
+      <span>
+        📞 +382 XX XXX XXX
+      </span>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      © 2026 Mobile Collection. Sva prava zadržana.
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- ================= MODAL ================= -->
+
+  <div
+    id="modal"
+    class="modal"
+    onclick="closeModal(event)"
+  >
+
+    <div class="modal-card">
+
+      <button
+        class="close"
+        type="button"
+        onclick="closeModal()"
+        aria-label="Zatvori"
+      >
+        ×
+      </button>
+
+      <div id="modalContent"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script src="script.js"></script>
+
+</body>
+</html>
