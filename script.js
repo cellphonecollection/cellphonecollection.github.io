@@ -669,8 +669,7 @@ function setupBrands() {
         "click",
         function() {
 
-          const brand =
-            button.dataset.brand;
+          const brand = button.dataset.brand;
 
           let results;
 
@@ -682,7 +681,17 @@ function setupBrands() {
                 "Samsung",
                 "Xiaomi",
                 "Nokia",
-                "Huawei"
+                "Huawei",
+                "BlackBerry",
+                "Sony",
+                "Ericsson",
+                "Sony Ericsson",
+                "Motorola",
+                "Siemens",
+                "Honor",
+                "Unihertz",
+                "Polaroid",
+                "Sharp"
               ].includes(p.brand)
             );
 
